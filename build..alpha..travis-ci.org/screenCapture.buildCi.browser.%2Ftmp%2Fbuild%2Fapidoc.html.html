@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.node-telegram-bot-api.node-telegram-bot-api">
+            function <span class="apidocSignatureSpan"></span>node-telegram-bot-api
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">node-telegram-bot-api.</span>errors</span>
 
         </li>
@@ -106,6 +115,87 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.node-telegram-bot-api" id="apidoc.module.node-telegram-bot-api">module node-telegram-bot-api</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-telegram-bot-api.node-telegram-bot-api" id="apidoc.element.node-telegram-bot-api.node-telegram-bot-api">
+        function <span class="apidocSignatureSpan"></span>node-telegram-bot-api
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class TelegramBot extends EventEmitter {
+
+  static get errors() {
+    return errors;
+  }
+
+  static get messageTypes() {
+    return _messageTypes;
+  }
+
+<span class="apidocCodeCommentSpan">  /**
+   * Both request method to obtain messages are implemented. To use standard polling, set `polling: true`
+   * on `options`. Notice that [webHook](https://core.telegram.org/bots/api#setwebhook) will need a SSL certificate.
+   * Emits `message` when a message arrives.
+   *
+   * @class TelegramBot
+   * @constructor
+   * @param {String} token Bot Token
+   * @param {Object} [options]
+   * @param {Boolean|Object} [options.polling=false] Set true to enable polling or set options.
+   *  If a WebHook has been set, it will be deleted automatically.
+   * @param {String|Number} [options.polling.timeout=10] *Deprecated. Use `options.polling.params` instead*.
+   *  Timeout in seconds for long polling.
+   * @param {String|Number} [options.polling.interval=300] Interval between requests in miliseconds
+   * @param {Boolean} [options.polling.autoStart=true] Start polling immediately
+   * @param {Object} [options.polling.params] Parameters to be used in polling API requests.
+   *  See https://core.telegram.org/bots/api#getupdates for more information.
+   * @param  {Number} [options.polling.params.timeout=10] Timeout in seconds for long polling.
+   * @param {Boolean|Object} [options.webHook=false] Set true to enable WebHook or set options
+   * @param {String} [options.webHook.host=0.0.0.0] Host to bind to
+   * @param {Number} [options.webHook.port=8443] Port to bind to
+   * @param {String} [options.webHook.key] Path to file with PEM private key for webHook server.
+   *  The file is read **synchronously**!
+   * @param {String} [options.webHook.cert] Path to file with PEM certificate (public) for webHook server.
+   *  The file is read **synchronously**!
+   * @param {String} [options.webHook.pfx] Path to file with PFX private key and certificate chain for webHook server.
+   *  The file is read **synchronously**!
+   * @param {Boolean} [options.webHook.autoOpen=true] Open webHook immediately
+   * @param {Object} [options.webHook.https] Options to be passed to `https.createServer()`.
+   *  Note that `options.webHook.key`, `options.webHook.cert` and `options.webHook.pfx`, if provided, will be
+   *  used to override `key`, `cert` and `pfx` in this object, respectively.
+   *  See https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener for more information.
+   * @param {String} [options.webHook.healthEndpoint=/healthz] An endpoint for health checks that always responds with 200 OK
+   * @param {Boolean} [options.onlyFirstMatch=false] Set to true to stop after first match. Otherwise, all regexps are executed
+   * @param {Object} [options.request] Options which will be added for all requests to telegram api.
+   *  See https://github.com/request/request#requestoptions-callback for more information.
+   * @param {String} [options.baseApiUrl=https://api.telegram.org] API Base URl; useful for proxying and testing
+   * @param {Boolean} [options.filepath=true] Allow passing file-paths as arguments when sending files,
+   *  such as photos using `TelegramBot#sendPhoto()`. See [usage information][usage-sending-files-performance]
+   *  for more information on this option and its consequences.
+   * @see https://core.telegram.org/bots/api
+   */
+</span>  constructor(token, options = {}) {
+    super();
+    this.token = token;
+    this.options = options;
+    this.options.polling = (typeof options.polling === 'undefined') ? false : options.polling;
+    this.options.webHook = (typeof options.webHook === 'undefined') ? false : options.webHook;
+    this.options.baseApiUrl = options.baseApiUrl || 'https://api.telegram.org';
+    this.options.filepath = (typeof options.filepath === 'undefined') ? true : options.filepath;
+    this._textRegexpCallbacks = [];
+    this._replyListenerId = 0;
+    this._replyListeners = [];
+    this._polling = null;
+    this._webHook = null;
+
+    if (options.polling) {
+      const autoStart = options.polling.autoStart;
+      if (typeof autoStart === 'undefined' || autoStart ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
 
